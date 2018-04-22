@@ -24,10 +24,22 @@ public class BallBehaviour : MonoBehaviour {
         // _velocity *= 1.2f;
         ContactPoint2D contact = collision.contacts[0];
 
-        print(contact.normal);
+        // print(contact.normal);
 
         _rb2d.velocity = Vector2.Reflect(_velocity, contact.normal);
 
+        if(collision.gameObject.tag == "Paddle")
+        {
+            if (transform.position.x > collision.gameObject.transform.position.x)
+            {
+                _rb2d.velocity = new Vector2(Mathf.Abs(_rb2d.velocity.x), _rb2d.velocity.y);
+            }
+            else
+            {
+                _rb2d.velocity = new Vector2(-Mathf.Abs(_rb2d.velocity.x), _rb2d.velocity.y);
+            }
+        }
+        
         //Vector3 normal = collision.contacts[0].normal;
         //Vector3 vel = _rb2d.velocity;
         //print(Vector3.Angle(vel, -normal));
