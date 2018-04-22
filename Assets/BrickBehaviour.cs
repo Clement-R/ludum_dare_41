@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class BrickBehaviour : MonoBehaviour {
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public enum BrickType
     {
-        Destroy(gameObject);
+        BLUE,
+        GREEN,
+        RED
     }
+
+    public BrickType brickType;
 }

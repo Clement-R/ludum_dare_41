@@ -23,11 +23,22 @@ public class BallBehaviour : MonoBehaviour {
     {
         // _velocity *= 1.2f;
         ContactPoint2D contact = collision.contacts[0];
+
+        print(contact.normal);
+
         _rb2d.velocity = Vector2.Reflect(_velocity, contact.normal);
 
-        if (collision.gameObject.tag == "Brick")
+        //Vector3 normal = collision.contacts[0].normal;
+        //Vector3 vel = _rb2d.velocity;
+        //print(Vector3.Angle(vel, -normal));
+
+            if (collision.gameObject.tag == "Brick")
         {
             Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.tag == "BottomWall")
+        {
+            Destroy(gameObject);
         }
     }
 }
